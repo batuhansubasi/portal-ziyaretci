@@ -2,41 +2,27 @@
 
 use yii\db\Migration;
 
-/**
- * Class m190104_143519_visit
- */
 class m190104_143519_visit extends Migration
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function safeUp()
-    {
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function safeDown()
-    {
-        echo "m190104_143519_visit cannot be reverted.\n";
-
-        return false;
-    }
-
-    /*
-    // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-
+		$tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+		$TABLE_NAME = 'ziyaret';
+		$this->createTable($TABLE_NAME, [
+            'ID' => $this->primaryKey(),
+            'IP' => $this->string(100)->notNull(),
+            'Giris_Zamani' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP')
+        ], $tableOptions);
     }
+    
 
     public function down()
     {
-        echo "m190104_143519_visit cannot be reverted.\n";
-
-        return false;
+        $TABLE_NAME = 'ziyaret';
+        $this->dropTable($TABLE_NAME);
     }
-    */
+    
 }
