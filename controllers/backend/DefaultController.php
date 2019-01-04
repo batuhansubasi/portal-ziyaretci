@@ -1,18 +1,29 @@
 <?php
 namespace kouosl\ziyaretci\controllers\backend;
+use kouosl\ziyaretci\models\Ziyaret;
+use Yii;
 
-
-/**
- * Default controller for the `ziyaretci` module
- */
-class DefaultController extends \kouosl\base\controllers\backend\BaseController
+class DefaultController extends \kouosl\base\controllers\frontend\BaseController
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
     public function actionIndex()
     {
-        return $this->render('_index');
+        $model = new Ziyaret();
+		
+		if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                  
+                     if ($model->save()) {
+                        Yii::$app->session->setFlash('success', 'Başarılı. Giris Eklendi.');
+                        } else {
+                            Yii::$app->session->setFlash('error', 'Hata. Bir sorun meydana geldi.');
+                        }      
+                
+            return $this->refresh();
+        } else {
+            return $this->render('_index', [
+                'model' => $model,
+   
+            ]);
+        }
     }
+	
 }
