@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $visitor_ip = $_SERVER['REMOTE_ADDR'];
 
-
 $this->registerJs( <<< EOT_JS_CODE
 
 var browser = '';
@@ -35,8 +34,8 @@ if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
 if(browserVersion === 0){
     browserVersion = parseFloat(new Number(RegExp.$1));
 }
-alert(browser + " - Version: " + browserVersion);
-var myvar = (browser + " - Version: " + browserVersion);
+var myvar = (browser + " - " + browserVersion);
+$("#browser").text("Tarayıcı - Sürüm : " + myvar);
 EOT_JS_CODE
 );
 
@@ -113,6 +112,27 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
         </div>
 </div>
 
+<div class="row">
+        <div class="col-lg-9">
+            <?php $t=0; foreach($haftalik_ziyaret as $value){ ?>
+             <?php $t++; } ?>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-lg-9">
+            <?php $y=0; foreach($aylik_ziyaret as $value){ ?>
+             <?php $y++; } ?>
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-lg-9">
+            <?php $u=0; foreach($yillik_ziyaret as $value){ ?>
+             <?php $u++; } ?>
+        </div>
+</div>
+
 
 <!DOCTYPE html>
 <html>
@@ -120,7 +140,7 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 		<title> </title>
 		<style type="text/css">
 			.wrapper{
-					height: 400px;
+					height: 310px;
 					width: 700px;
 					background-color: skyblue;
 					margin:auto;
@@ -135,50 +155,53 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 					padding:20px;
 					margin:0px;
 			}
-			h4{
-					
+			.left{
+					float:left;
+					width:58%;
+					text-align:left;
+			}
+			.right{
+					float:right;
+					width:42%;
+					text-align: left;
 			}
 
 		</style>
-	</head>
+	</head>	
 	
-	<body>
+	<body>   
 		<div class="wrapper">
 			<h1>
 				Ziyaretci Sayaci
 			</h1>
-			
-			<div style="clear: both">  
-    		<h4 style="float: left">Toplam Ziyaretci Sayisi : <?php echo $i ?></h4>
-			<h4 style="float: right">Siteyi Ziyaret Sayiniz : <?php echo $y ?></h4>
+
+			<div class="left">
+			<h4>Toplam Ziyaretci Sayisi : <?php echo $i ?></h4>
+			<h4>Günlük Ziyaretci Sayisi : <?php echo $z ?></h4>
+			<h4>Bir Önceki Gün Ziyaretci Sayisi : <?php echo $a ?></h4>
+			<h4>Haftalık Ziyaretci Sayisi : <?php echo $t ?></h4>
+			<h4>Aylık Ziyaretci Sayisi : <?php echo $y ?></h4>
+			<h4>Yıllık Ziyaretci Sayisi : <?php echo $u ?></h4>
 			</div>
 			
-			<div style="clear: both">  
-    		<h4 style="float: left">Günlük Ziyaretci Sayisi : <?php echo $z ?></h4>
-			<h4 style="float: right">IP Adresiniz : <?php echo $visitor_ip ?> </h4>
+			<div class="right">
+			<h4>Siteyi Ziyaret Sayiniz : <?php echo $y ?></h4>
+			<h4>IP Adresiniz : <?php echo $visitor_ip ?> </h4>
+			<h4 id="browser"></h4>
+			<h4>İsletim Sisteminiz : <?php echo os_info($uagent);?></h4>
+			<h4>En Son Ziyaret Ettiğiniz Tarih : <div class="row">
+													<div class="col-lg-9">
+														<?php $p=0; foreach($son_ziyaret as $value){ ?>
+															<div id="<?php echo $p; ?>"><?php echo $value["Giris_Zamani"]; ?></div>
+															<?php $p++; } ?>
+													</div>
+												</div>
+			</h4>
+			<h4>Dil : <?php echo strtoupper($http_lang)?></h4>
 			</div>
 			
-			<div style="clear: both">  
-    		<h4 style="float: left">Bir Önceki Gün Ziyaretci Sayisi : <?php echo $a ?></h4>
-			<h4 style="float: right">Kullandığınız Tarayıcı : </h4>
-			</div>
 			
-			<div style="clear: both">  
-    		<h4 style="float: left">Haftalık Ziyaretci Sayisi : </h4>
-			<h4 style="float: right">İsletim Sisteminiz : <?php echo os_info($uagent);?></h4>
-			</div>
-			
-			<div style="clear: both">  
-    		<h4 style="float: left">Aylık Ziyaretci Sayisi : </h4>
-			<h4 style="float: right">En Son Ziyaret Ettiğiniz Tarih : </h4>
-			</div>
-			
-			<div style="clear: both">  
-    		<h4 style="float: left">Yıllık Ziyaretci Sayisi : </h4>
-			<h4 style="float: right">Dil : <?php echo strtoupper($http_lang)?></h4>
-			</div>
-			
-		</div>
+		</div>	
 	</body>
 </html>	
 	
