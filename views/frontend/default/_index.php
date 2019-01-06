@@ -3,6 +3,8 @@ use kouosl\theme\helpers\Html;
 use kouosl\theme\widgets\Portlet;
 use yii\bootstrap\ActiveForm;
 use kouosl\ziyaretci\models\Ziyaret;
+use kouosl\ziyaretci\Module;
+use kouosl\site\models\Setting;
 
 
 $this->title = 'Ziyaretci Sayaci';
@@ -136,9 +138,10 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 
 <!DOCTYPE html>
 <html>
+		
 	<head>
 		<title> </title>
-		<style type="text/css">
+		<style type="text/css">			
 			.wrapper{
 					height: 310px;
 					width: 700px;
@@ -147,6 +150,7 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 					text-align:center;
 					border: 1px solid white;
 					box-shadow: 2px 2px 10px gray;
+					background: linear-gradient(to right, #f7ff00, #db36a4);
 			}
 			h1{
 					background-color: mediumseagreen;
@@ -154,6 +158,7 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 					border-bottom: 2px solid white;
 					padding:20px;
 					margin:0px;
+					background: linear-gradient(to right, #5614B0, #DBD65C);
 			}
 			.left{
 					float:left;
@@ -170,9 +175,15 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 	</head>	
 	
 	<body>   
-		<div class="wrapper">
+			<div class="wrapper">
 			<h1>
-				Ziyaretci Sayaci
+				<?php 
+				$lang = yii::$app->session->get('lang');
+				\Yii::$app->language = $lang;
+				yii::$app->session->set('lang',$lang);
+				\Yii::$app->language = 'tr-TR'; 
+				echo Module::t('Ziyaretci Sayaci','Visitor Count');
+				?> 
 			</h1>
 
 			<div class="left">
@@ -200,8 +211,7 @@ $http_lang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,2);
 			<h4>Dil : <?php echo strtoupper($http_lang)?></h4>
 			</div>
 			
-			
-		</div>	
+		</div>
 	</body>
 </html>	
 	

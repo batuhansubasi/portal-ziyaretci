@@ -11,6 +11,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Ziyarets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
+<style>
+.site-index{
+    background: linear-gradient(to right, #00416A, #E4E5E6);
+}
+</style>
+
+<div class="site-index">
 <div class="ziyaret-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -35,4 +43,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div>
 </div>

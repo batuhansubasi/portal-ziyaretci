@@ -10,6 +10,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Ziyarets', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID, 'url' => ['view', 'id' => $model->ID]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
+
+<style>
+.site-index{
+    background: linear-gradient(to right, #F7F8F8, #ACBB78);
+}
+</style>
+
+<div class="site-index">
 <div class="ziyaret-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -18,4 +26,5 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
 
+</div>
 </div>

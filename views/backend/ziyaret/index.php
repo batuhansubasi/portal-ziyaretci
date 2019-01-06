@@ -10,6 +10,14 @@ use yii\grid\GridView;
 $this->title = 'Ziyarets';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<style>
+.site-index{
+    background: linear-gradient(to right, #ADA996,#F2F2F2, #DBDBDB,#EAEAEA);
+}
+</style>
+
+<div class="site-index">
 <div class="ziyaret-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -32,4 +40,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
 </div>

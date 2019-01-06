@@ -8,6 +8,13 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<style>
+.site-index{
+    background: linear-gradient(to right, #ee9ca7, #ffdde1);
+}
+</style>
+
+<div class="site-index">
 <div class="ziyaret-search">
 
     <?php $form = ActiveForm::begin([
@@ -28,4 +35,5 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
+</div>
 </div>
