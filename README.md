@@ -16,7 +16,7 @@ Portal Ziyaretci modülünü, portal web uygulamasına eklemek için /portal diz
     "require": {
          
         ....   
-        "kouosl/portal-ziyaretci": "dev-develop"
+        "kouosl/portal-ziyaretci": "dev-master"
     },
     ....
 
